@@ -48,7 +48,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->    
     
 <div id="top-blackband" style="text-align:center; font-size:12px; background-color: #223C63; color: white; width: 100%; height: auto; padding-top:2px; margin: 0; position:relative; top: 0; left: 0;">
-    Há <span id="top-people" style="font-weight: bold"></span> pessoas em <span id="top-city" style="font-weight: bold"></span> assistindo esse vídeo agora</div>
+    Você e mais <span id="top-people" style="font-weight: bold"></span> pessoas de <span id="top-city" style="font-weight: bold"></span> foram selecionados para participar desse programa</div>
 
 
 
@@ -75,7 +75,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        	
 
 
-        <h4 style="text-align: center; margin:0px;"><span style="color:#C00; font-size:1.1em;" id="num-persons"></span> pessoas já viram.</h4>
+        <h4 style="text-align: center; margin:0px;"><span style="color:#C00; font-size:1.1em;" id="num-persons"></span> estão assistindo agora.</h4>
 
     </div>
 </div>
@@ -181,7 +181,7 @@ $( document ).ready(function() {
         }
     });
     
-  document.querySelector("#num-persons").innerHTML = "" + getRandomInt2(78127,78579);
+  document.querySelector("#num-persons").innerHTML = "" + getRandomInt2(2127,4579);
 
   setInterval(function(){
     var curr = parseInt(document.querySelector("#num-persons").innerHTML);
