@@ -1,181 +1,92 @@
 
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>   
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adios Gluten</title>
-    
-    <link rel="stylesheet" type='text/css' href="23y.css" media="all" />
-    	
-
-</head>
-<body style="background-color:#f6f6f6;">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGK3CWH"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->    
-    
-<div id="top-stop" style="text-align: center; font-size: 17px; background-color: #cf0101; color: white; font-weight: bold; width: 100%; height: auto; padding: 10px 0; margin: 0; position: relative; top: 0; left: 0;">
-    ¡No cierres ni actualices esta página! <br> 
-	[TU COMPRA PODRÍA PERDERSE]
-</div>
-
-
-
-<div style="max-width: 100%; width: 640px; margin: 20px auto 10px; text-align: center;" id="headline">
-    <img style="display: block; margin: 0 auto;" width="300" height="126" src="atention.png" alt="">
-</div>
-
-
-
-       	 
-
-<div class="video-floater" style="max-width: 662px;margin-left: auto;margin-right: auto;width: 100%;">
-    		
-    		    
-
-
-<div id="vid_6797e1135326839782a584c1" style="position: relative; width: 100%; padding: 56.25% 0 0;"> <img id="thumb_6797e1135326839782a584c1" src="https://images.converteai.net/dce77d67-91b9-4302-910d-c0f2659f977d/players/6797e1135326839782a584c1/thumbnail.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block;" alt="thumbnail"> <div id="backdrop_6797e1135326839782a584c1" style=" -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); position: absolute; top: 0; height: 100%; width: 100%; "></div> </div> <script type="text/javascript" id="scr_6797e1135326839782a584c1"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/dce77d67-91b9-4302-910d-c0f2659f977d/players/6797e1135326839782a584c1/player.js", s.async=!0,document.head.appendChild(s); </script> <style> .elementor-element:has(#smartplayer) { width: 100%; } </style>
-		</div>
-       	
-
-
-        <h4 style="text-align: center; margin:0px;"><span style="color:#C00; font-size:1.1em;" id="num-persons"></span> la gente está mirando</h4>
-
-    </div>
-</div>
-
-
-<div class="gray teaser nomarginbottom" style="background-color:#F6F6F6 !important">
-	<div class="container" style="background:none;padding: 10px;">		
-		
-		
-		
-	
-
-
-
-	
-	</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="footer" style="display:none;background-color:#F6F6F6 !important">
-
-  <p align="center" style="font-size: 10px;">Condiciones de uso / Política de privacidad</p>
- 
-  
-
-</div>
-
-
-
-
-
-
-
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
-
-<script>
-    function getRandomInt2(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-
-$( document ).ready(function() {
-	
- 
-  if(!localStorage.getItem('_bannershow_')){
-      localStorage.setItem('_bannershow_', true);
-      setTimeout(function(){ $('#lp-addtocart').fadeIn(); }, 60000);
-
-    }else {
-       $('#lp-addtocart').fadeIn();
-    }
-  
-  $("#top-people").html(getRandomInt2(2,8));
-  var ipapi = $.ajax({
-        url: "https://ipapi.co/json",
-        success: function(result) {
-            $("#top-city").html(result.city);
-        },
-        error: function(result) {
-            $("#top-blackband").hide();
-            console.error(result);
+    <link rel="stylesheet" href="23y.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <style>
+        /* Estilização do container de vídeo */
+        .video-container {
+            max-width: 662px;
+            margin: auto;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
         }
-    });
+
+        /* Box vermelho sobre o vídeo (MENOR) */
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px; /* Reduzi para um tamanho menor */
+            height: 150px; /* Ajustei para melhor proporção */
+            background: rgba(185, 2, 2, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 10px;
+            border: 2px solid white;
+            cursor: pointer;
+            animation: pulse 1.5s infinite alternate;
+            transform: translate(-50%, -50%); /* Centraliza o box */
+        }
+
+        /* Ícone de som */
+        .overlay img {
+            width: 40px;
+            height: 40px;
+            margin: 5px 0;
+        }
+
+        /* Efeito de pulsação */
+        @keyframes pulse {
+            from {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body style="background-color:#f6f6f6; text-align: center;">
     
-  document.querySelector("#num-persons").innerHTML = "" + getRandomInt2(2127,4579);
+    <!-- Alerta Superior -->
+    <div id="top-stop" style="font-size: 17px; background-color: #cf0101; color: white; font-weight: bold; padding: 10px 0;">
+        ¡No cierres ni actualices esta página! <br> [TU COMPRA PODRÍA PERDERSE]
+    </div>
+    
+    <!-- Cabeçalho -->
+    <div style="margin: 20px auto 10px;">
+        <img width="300" height="126" src="atention.png" alt="">
+    </div>
+    
+    <!-- Vídeo Player -->
+    <div class="video-container">
+        <video id="video" autoplay muted playsinline style="width: 100%;"></video>
 
-  setInterval(function(){
-    var curr = parseInt(document.querySelector("#num-persons").innerHTML);
-    curr +=1 ;
-    document.querySelector("#num-persons").innerHTML = ""+curr;
-  }, 1111);
-
-	
-	setTimeout(function(){ $("#float-btn").show(); }, 60000);		
-});
-</script>
-
-
-
-
-<script src='hot.js' defer></script>
-
-
-
-
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-J16MPJHE93"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-J16MPJHE93');
-</script>
-	
-	
-	<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2956201684617576');
-fbq('track', 'PageView');
-fbq('track', 'ViewContent');
-fbq('track', 'PV-RendaV');
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2956201684617576&amp;ev=PageView&amp;noscript=1"></noscript>
+        <!-- Box vermelho menor -->
+        <div class="overlay" id="overlay" onclick="restartVideo()">
+            <span>Tu vídeo ya ha comenzado</span>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Speaker_Icon.svg" alt="Som Desativado">
+            <span>Haga clic para escuchar</span>
+        </div>
+    </div>
+    
+    <!-- Contador de Visitantes -->
+    <h4 style="margin:0px;"><span style="color:#C00; font-size:1.1em;" id="num-persons"></span> la gente está mirando</h4>
+    
 <!-- HOTMART - Sales Funnel Widget -->
 <!--- sales funnel container --->
 <div id="hotmart-sales-funnel"></div>
@@ -186,6 +97,41 @@ fbq('track', 'PV-RendaV');
 checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
 </script>
 <!-- HOTMART - Sales Funnel Widget -->
-
+    
+    <!-- Rodapé -->
+    <div id="footer" style="display:none; background-color:#F6F6F6;">
+        <p style="font-size: 10px;">Condiciones de uso / Política de privacidad</p>
+    </div>
+    
+    <script>
+        var video = document.getElementById('video');
+        var overlay = document.getElementById('overlay');
+        var videoSrc = "https://cdn.jsdelivr.net/gh/brengrassy/adios3@f37b1edd755ed644c4388ab468828cd3fd953b32/Adios-Gluten.m3u8";
+        
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+        }
+        
+        function restartVideo() {
+            video.currentTime = 0; // Reinicia o vídeo do começo
+            video.muted = false;
+            video.play();
+            overlay.style.display = "none";
+        }
+        
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
+        document.getElementById("num-persons").innerText = getRandomInt(2127, 4579);
+        setInterval(function() {
+            var current = parseInt(document.getElementById("num-persons").innerText);
+            document.getElementById("num-persons").innerText = current + 1;
+        }, 1111);
+    </script>
 </body>
 </html>
