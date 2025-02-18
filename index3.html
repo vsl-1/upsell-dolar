@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adios Gluten</title>
+    <link rel="stylesheet" href="23y.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body style="background-color:#f6f6f6; text-align: center;">
+    
+    <!-- Alerta Superior -->
+    <div id="top-stop" style="font-size: 17px; background-color: #cf0101; color: white; font-weight: bold; padding: 10px 0;">
+        ¡No cierres ni actualices esta página! <br> [TU COMPRA PODRÍA PERDERSE]
+    </div>
+    
+    <!-- Cabeçalho -->
+    <div style="margin: 20px auto 10px;">
+        <img width="300" height="126" src="atention.png" alt="">
+    </div>
+    
+    <!-- Vídeo Player -->
+    <div class="video-container" style="max-width: 662px; margin: auto; position: relative;">
+        <video id="video" autoplay muted playsinline style="width: 100%; border-radius: 10px;"></video>
+        <div class="overlay" id="overlay" onclick="restartVideo()" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; color: white; font-size: 20px; font-weight: bold;">
+            <p>Haga clic para escuchar</p>
+        </div>
+    </div>
+    
+    <!-- Contador de Visitantes -->
+    <h4 style="margin:0px;"><span style="color:#C00; font-size:1.1em;" id="num-persons"></span> la gente está mirando</h4>
+    
+    <!-- Rodapé -->
+    <div id="footer" style="display:none; background-color:#F6F6F6;">
+        <p style="font-size: 10px;">Condiciones de uso / Política de privacidad</p>
+    </div>
+    
+    <script>
+        var video = document.getElementById('video');
+        var overlay = document.getElementById('overlay');
+        var videoSrc = "https://cdn.jsdelivr.net/gh/brengrassy/adios3@f37b1edd755ed644c4388ab468828cd3fd953b32/Adios-Gluten.m3u8";
+        
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+        }
+        
+        function restartVideo() {
+            video.currentTime = 0;
+            video.muted = false;
+            video.play();
+            overlay.style.display = "none";
+        }
+        
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
+        document.getElementById("num-persons").innerText = getRandomInt(2127, 4579);
+        setInterval(function() {
+            var current = parseInt(document.getElementById("num-persons").innerText);
+            document.getElementById("num-persons").innerText = current + 1;
+        }, 1111);
+    </script>
+</body>
+</html>
